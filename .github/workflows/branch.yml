@@ -20,3 +20,4 @@ jobs:
           echo github action: $GITHUB_REF
           echo headref: ${{ github.head_ref }}
           echo HEADREF: $HEADREF
+          echo GITHUB_HEAD_REF: $GITHUB_HEAD_REF
