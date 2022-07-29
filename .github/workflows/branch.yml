@@ -21,7 +21,6 @@ jobs:
           echo headref: ${{ github.head_ref }}
           echo HEADREF: $HEADREF
           echo GITHUB_HEAD_REF: $GITHUB_HEAD_REF
-
       - name: Bad branch name
         if: !contains(['inc1', 'inc2', 'inc3'], github.head_ref )
         env:
