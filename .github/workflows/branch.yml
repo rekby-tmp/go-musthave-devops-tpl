@@ -8,9 +8,13 @@ jobs:
   branch_name:
     runs-on: ubuntu-22.04
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Branch name
         env:
           BRANCH_NAME: $GITHUB_REF
         run: |
           echo git: $(git rev-parse --abbrev-ref HEAD)
           echo github action: $GITHUB_REF
+          echo headref: {{ github.head_ref }}
