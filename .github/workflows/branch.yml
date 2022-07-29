@@ -14,7 +14,9 @@ jobs:
       - name: Branch name
         env:
           BRANCH_NAME: $GITHUB_REF
+          HEADREF: "{{ github.head_ref }}"
         run: |
           echo git: $(git rev-parse --abbrev-ref HEAD)
           echo github action: $GITHUB_REF
           echo headref: {{ github.head_ref }}
+          echo HEADREF: $HEADREF
