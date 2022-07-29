@@ -8,24 +8,10 @@ jobs:
   branch_name:
     runs-on: ubuntu-22.04
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Branch name
-        env:
-          BRANCH_NAME: $GITHUB_REF
-          HEADREF: "${{ github.head_ref }}"
-        run: |
-          echo git: $(git rev-parse --abbrev-ref HEAD)
-          echo github action: "$GITHUB_REF"
-          echo headref: "${{ github.head_ref }}"
-          echo HEADREF: "$HEADREF"
-          echo GITHUB_HEAD_REF: "$GITHUB_HEAD_REF"
-
       - name: Bad branch name
         if: "!contains(fromJSON(env.ALLOWED_BRANCHES), github.head_ref )"
         env:
-          ALLOWED_BRANCHES: "['inc1', 'inc2', 'inc3', 'branch-test']"
+          ALLOWED_BRANCHES: "['inc1', 'inc2', 'inc3']"
           BRANCH_NAME: "${{ github.head_ref }}"
         run: |
           echo "branch name '$BRANCH_NAME' is not allowed"
