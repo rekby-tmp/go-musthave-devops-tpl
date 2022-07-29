@@ -25,8 +25,8 @@ jobs:
       - name: Bad branch name
         if: "!contains(fromJSON(env.ALLOWED_BRANCHES), github.head_ref )"
         env:
-          ALLOWED_BRANCHES: "['inc1', 'inc2', 'inc3']"
+          ALLOWED_BRANCHES: "['inc1', 'inc2', 'inc3', 'branch-test']"
           BRANCH_NAME: "${{ github.head_ref }}"
         run: |
-          echo branch name '$BRANCH_NAME' is not allowed
+          echo "branch name '$BRANCH_NAME' is not allowed"
           exit 1
