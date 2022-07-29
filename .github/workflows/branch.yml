@@ -1,0 +1,19 @@
+name: branch name
+on:
+  pull_request:
+    branches:
+      - master
+      - main
+
+jobs:
+  branch_name:
+    runs-on: ubuntu-22.04
+    steps:
+      - name: Bad branch name
+        if: "!contains(fromJSON(env.ALLOWED_BRANCHES), github.head_ref )"
+        env:
+          ALLOWED_BRANCHES: "['inc1', 'inc2', 'inc3']"
+          BRANCH_NAME: "${{ github.head_ref }}"
+        run: |
+          echo "branch name '$BRANCH_NAME' is not allowed"
+          exit 1
