@@ -22,3 +22,10 @@ jobs:
           echo HEADREF: "$HEADREF"
           echo GITHUB_HEAD_REF: "$GITHUB_HEAD_REF"
 
+      - name: Bad branch name
+        if: "!contains(['inc1', 'inc2', 'inc3'], github.head_ref )"
+        env:
+          BRANCH_NAME: "${{ github.head_ref }}"
+        run: |
+          echo branch name '$BRANCH_NAME' is not allowed
+          exit 1
